@@ -39,6 +39,7 @@ export default function App() {
   const [exportWithDarkMode, setExportWithDarkMode] = useState(false);
   const [shouldAddWatermark, setShouldAddWatermark] = useState(false);
   const [theme, setTheme] = useState("light");
+  const [object,setObject] = useState({a:10});
 
   useEffect(() => {
     const onHashChange = () => {
@@ -84,6 +85,14 @@ export default function App() {
       }
     };
     excalidrawRef.current.updateScene(sceneData);
+  };
+  
+  //Make an arrow head function
+  const hello = (elements, state) => {
+    console.log(5);
+    console.log("Elements :", elements,"State :",state);
+    console.log(object.a);
+    setObject(object.a = elements);
   };
 
   return (
@@ -145,9 +154,7 @@ export default function App() {
           <Excalidraw
             ref={excalidrawRef}
             initialData={InitialData}
-            onChange={(elements, state) =>
-              console.log("Elements :", elements, "State : ", state)
-            }
+            onChange={hello}
             onPointerUpdate={(payload) => console.log(payload)}
             onCollabButtonClick={() =>
               window.alert("You clicked on collab button")
